@@ -1,2 +1,1 @@
-Os testes estão separados por placas, e as bibliotecas utilizadas devem
-estar no diretório de libraries da placa em questão :)
+The components tests are separated by board and have the libraries inside :)
