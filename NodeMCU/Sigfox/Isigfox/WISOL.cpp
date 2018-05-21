@@ -294,7 +294,7 @@ int WISOL::sendPayload(uint8_t *outData, const uint8_t len, int downlink){
 	
 	//Verifica se precisa mudar a zona
 	checkChangeZone();
-	
+
 	// Envia o pacote
 	receivedResult = sendPayloadProcess(outData, len, downlink, NULL);
 
@@ -307,7 +307,7 @@ int WISOL::sendPayloadProcess(uint8_t *outData, const uint8_t len, const int dow
 	const uint8_t headerLen = (uint8_t) strlen(header);
 	int actualLen;
 	int sendLen;
-	char* hex_str;
+	
 	int receivedResult;
 
 	if ((outData[len] == '\0') || (outData[len] == '\n')){
@@ -316,7 +316,9 @@ int WISOL::sendPayloadProcess(uint8_t *outData, const uint8_t len, const int dow
 		actualLen = len;
 	}
 
-	hex_str = (char*) malloc (2 * actualLen);
+	char hex_str[2*actualLen];
+	//char* hex_str;
+	//hex_str = (char*) malloc (2 * actualLen);
 	ASCII2Hex(outData, actualLen, hex_str);
 	sendLen = 2*actualLen;
 
@@ -334,7 +336,7 @@ int WISOL::sendPayloadProcess(uint8_t *outData, const uint8_t len, const int dow
 	//Serial.print("sendPayloadProcess = ");
 	for (int i=0; i<headerLen; i++){
 		Serial2.print(header[i]); // print header first
-		//Serial.print(header[i]);
+	//	Serial.print(header[i]);
 	}
 	//Serial.println();
 
@@ -351,7 +353,7 @@ int WISOL::sendPayloadProcess(uint8_t *outData, const uint8_t len, const int dow
 	}
 
 	Serial2.println('\0'); // send end terminal
-	free(hex_str); // free hex_str from the memory
+	//free(hex_str); // free hex_str from the memory
 
 	if (receivedMsg != NULL){
 		receivedResult = getRecvMsg(receivedMsg, downlink); // Read ACK

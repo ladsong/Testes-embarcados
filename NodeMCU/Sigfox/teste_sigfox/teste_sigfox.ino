@@ -25,7 +25,7 @@ void setup() {
 void loop() {
 
   // Definindo o tamanho do pacote
-  pacote[0] = 128;
+  pacote[0] = 129;
   pacote[1] = 15;
   pacote[2] = 64;
   pacote[3] = 57;
